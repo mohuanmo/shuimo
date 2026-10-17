@@ -79,6 +79,4 @@ release 没配签名，要分发的话自己准备 keystore。
 
 Apache License 2.0，版权归 GlassKey Contributors，全文见 [LICENSE](LICENSE)。
 
-拿去用、改、再发都行，商用也可以，只要保留版权声明和许可证，并带上 [NOTICE](NOTICE)。「水墨」「GlassKey」这两个名字、图标和视觉标识不在授权范围内，改过再发的版本请换个名字，别让人以为是同一个东西。
-
 第三方组件和模型的上游授权见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
