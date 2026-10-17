@@ -15,7 +15,7 @@ import kotlin.math.sin
  *   通过同一接口替换内置实现（OnnxHwrEngine，随资源包功能发布）。
  *
  * 现状（v1.7.4）：ONNX 汉字模型因训练阶段问题始终无法正常加载，手写功能整体不可用；
- * 内置 $P 点云仅覆盖数字与少量极简汉字，属于占位实现，不应视为可用的手写输入。
+ * 内置 $P 点云只认数字和十来个最简单的字，说白了就是个占位，别当手写用。
  */
 interface HwrEngine {
     val ready: Boolean
