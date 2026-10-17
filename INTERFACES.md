@@ -1,7 +1,5 @@
 # 接口速查
 
-给要改代码的人看的：东西在哪个文件、叫什么、管什么事。只列 App 自己的接口，构建环境和测试记录不放在这里。
-
 ## Android 入口
 
 | 位置 | 接口 | 管什么 |
@@ -68,7 +66,7 @@ C ABI 按用途分：
 | `app/src/main/java/com/glasskey/ime/predict/NextWordPredictor.kt` | `NextWordPredictor` | 下一词预测和统计 |
 | `app/src/main/java/com/glasskey/ime/predict/RecentHotWords.kt` | `RecentHotWords` | 短期热词 |
 
-## 几个数据格式
+## 数据格式
 
 - 用户词 blob：`word\0pinyin\0freq(u32 LE)` 一条接一条，Kotlin 拼好交给 `ime_load_user_words`
 - 词典 `.gkdt`：magic `GKDT` + 版本 + 段头表，DAT 的键是空格分隔的拼音
