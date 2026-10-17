@@ -7,8 +7,8 @@ GlassKey 第三方组件声明
   https://github.com/k2-fsa/sherpa-onnx
 - onnxruntime Java API（ONNX 推理运行时绑定）：MIT License
   https://github.com/microsoft/onnxruntime
-- 语音模型：sherpa-onnx Zipformer 中文 int8 模型与 Silero VAD，随安装包离线分发
-- 手写模型：随安装包离线分发（models/hwr）
+- 语音模型：sherpa-onnx Zipformer 中文 int8 模型与 Silero VAD，随安装包离线分发（Apache-2.0 / MIT）
+- 手写模型：随安装包分发（models/hwr）；当前模型无法正常加载，手写功能不可用
 - C++ 核心引擎（core/）：自研
 - Kotlin / Java 层：仅使用 Android framework API（android.*，随系统分发）
 
@@ -33,4 +33,5 @@ GlassKey 第三方组件声明
 说明
 ----
 以上为随包分发的第三方组件清单。各组件与模型文件按其上游许可证分发，若需
-再分发，请自行核对相应条款。
+再分发，请自行核对相应条款。项目自身的许可证为 Apache License 2.0，
+见 LICENSE 与 NOTICE。

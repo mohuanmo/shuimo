@@ -199,7 +199,7 @@ class MainActivity : Activity() {
         })
         voice.addView(text(
             "语音识别：中文流式模型已内置（离线） · " +
-                "手写：${com.glasskey.ime.hwr.HwrModelContract.ready(File(filesDir, "models")).let { if (it) "汉字模型已就绪" else "内置点云识别，即开即用" }}",
+                "手写：${com.glasskey.ime.hwr.HwrModelContract.ready(File(filesDir, "models")).let { if (it) "模型已加载（识别效果仍不可用）" else "模型无法加载，功能不可用" }}",
             13f, subC).apply {
             setPadding(0, (d * 6).toInt(), 0, 0)
         })
