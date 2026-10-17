@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">水墨输入法</string>
+    <string name="ime_name">水墨 · 磨砂拼音</string>
+
+    <!-- 主界面 -->
+    <string name="main_title">水墨输入法</string>
+    <string name="main_subtitle">磨砂玻璃 · 拼音 / T9 / 拉丁 · 纯本地无联网</string>
+    <string name="step1_status_on">✓ 输入法已在系统中启用</string>
+    <string name="step1_status_off">① 请先在系统设置中启用 水墨输入法</string>
+    <string name="btn_enable">前往系统设置启用</string>
+    <string name="step2_status_on">✓ 已设为当前输入法</string>
+    <string name="step2_status_off">② 点击切换到 水墨（任意输入框长按或此按钮）</string>
+    <string name="btn_switch">切换输入法</string>
+    <string name="settings_title">偏好设置</string>
+    <string name="pref_learning">用户词学习</string>
+    <string name="pref_learning_sum">开启后自动记录常用词并提升排序（数据仅存本机）</string>
+    <string name="btn_user_dict">用户词管理</string>
+    <string name="fuzzy_title">模糊音</string>
+    <string name="fuzzy_zh_z">z / zh</string>
+    <string name="fuzzy_ch_c">c / ch</string>
+    <string name="fuzzy_sh_s">s / sh</string>
+    <string name="fuzzy_an_ang">an / ang</string>
+    <string name="fuzzy_en_eng">en / eng</string>
+    <string name="fuzzy_in_ing">in / ing</string>
+    <string name="fuzzy_n_l">n / l</string>
+    <string name="fuzzy_f_h">f / h</string>
+    <string name="privacy_note">隐私承诺：无 INTERNET 权限，所有输入数据仅保存在本机 SQLite，可随时清空。</string>
+
+    <!-- M2 功能（第二部分） -->
+    <string name="settings_features">M2 功能开关</string>
+    <string name="pref_clipboard">剪贴板历史（键盘工具栏 📋 打开）</string>
+    <string name="pref_float_b">悬浮键盘路线 B（需"显示在其他应用上层"权限，未授权自动降级）</string>
+    <string name="mic_request_toast">请允许麦克风权限以使用语音输入（仅本地处理）</string>
+
+    <!-- 用户词 -->
+    <string name="user_dict_title">用户词管理</string>
+    <string name="user_dict_empty">暂无用户词</string>
+    <string name="user_dict_clear">清空全部</string>
+    <string name="user_dict_hint">长按词条可删除</string>
+    <string name="user_dict_deleted">已删除：%1$s</string>
+    <string name="user_dict_cleared">已清空全部用户词</string>
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- v1.6.7：新增 INTERNET 权限——词库管理"订阅"功能的 URL 直链下载需要；
+     仅用于用户主动输入的订阅链接下载词库/词对文件，应用本身无任何遥测上传 -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 订阅词库网络导入（LexiconStore URL 下载：直链/重定向跟随） -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 语音输入（§5.6）：仅本地推理，音频不落盘不联网（§S-05）；运行时申请 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- 悬浮键盘路线 B（§5.7）：真悬浮窗需"显示在其他应用上层"权限，
+         运行时经 Settings.canDrawOverlays() 引导授权（修复：v1.2 未声明该权限，
+         B 方案永远弹不出授权与悬浮窗） -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.GlassKey"
+        android:supportsRtl="true">
+
+        <!-- 输入法服务（§5.1） -->
+        <service
+            android:name=".ime.GkImeService"
+            android:exported="true"
+            android:label="@string/ime_name"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data
+                android:name="android.view.im"
+                android:resource="@xml/method" />
+        </service>
+
+        <!-- 主界面：启用引导 + 设置 + 用户词管理（§5.2）。
+             v1.6.0：excludeFromRecents —— 不出现在多任务栏，
+             避免用户误把输入法进程从最近任务划掉（服务本身不受影响） -->
+        <activity
+            android:name=".app.MainActivity"
+            android:excludeFromRecents="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".app.UserDictActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="@string/user_dict_title" />
+
+        <activity
+            android:name=".app.LearnDataActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="学习数据" />
+
+        <activity
+            android:name=".app.DevActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="开发者选项" />
+
+        <activity
+            android:name=".app.LexiconManagerActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="词库管理" />
+    </application>
+</manifest>

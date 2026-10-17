@@ -1,0 +1,47 @@
+﻿# 单测确定性词库（小型；供 core/tests golden 用例）
+你好	ni hao	50000
+你好吗	ni hao ma	8000
+吗	ma	20000
+你	ni	40000
+好	hao	40000
+很	hen	30000
+的	de	30000
+今天	jin tian	37000
+天	tian	30000
+天气	tian qi	25000
+真	zhen	20000
+真好	zhen hao	15000
+早上	zao shang	12000
+时事	shi shi	5200
+实施	shi shi	5100
+事实	shi shi	5000
+逝世	shi shi	1000
+十四	shi si	4900
+是	shi	29000
+十	shi	25000
+四	si	20000
+世界	shi jie	20000
+接	jie	15000
+西安	xi an	15000
+安	an	12000
+先	xian	20000
+现	xian	19000
+县	xian	8000
+西	xi	18000
+想	xiang	17000
+香	xiang	16000
+箱	xiang	8000
+江	jiang	10000
+将	jiang	9000
+新疆	xin jiang	7000
+心	xin	18000
+爱人	ai ren	12000
+人	ren	27000
+爱	ai	22000
+啊	a	30000
+说	shuo	26000
+话	hua	18000
+说话	shuo hua	14000
+天气预报	tian qi yu bao	3000
+预	yu	9000
+报	bao	10000

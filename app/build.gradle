@@ -1,0 +1,60 @@
+// GlassKey app 模块（Groovy DSL：经典 apply 方式保证与 buildscript 同类路径）
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+android {
+    namespace 'com.glasskey'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.glasskey.ime'
+        minSdk 26          // §1.4：Android 8.0+
+        targetSdk 34
+        versionCode 32      // v1.6.0: 语料bigram组句+词库管理(订阅导入)+悬浮白条/角标/合成区固定+STARTERS移除+excludeFromRecents+内存优化
+        versionName '1.7.4'
+
+        ndkVersion '27.0.12077973'  // 显式声明
+        ndk {
+            abiFilters += ['arm64-v8a', 'x86_64']
+        }
+        // 无 INTERNET 权限（§S-02 纯净版）
+    }
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    testOptions {
+        unitTests.includeAndroidResources = false
+    }
+    packaging {
+        resources.excludes += 'META-INF/LICENSE*'
+        // sherpa-onnx AAR 内的多余原生库剔除（仅用 JNI 入口库）
+        jniLibs.excludes += ['lib/*/libsherpa-onnx-c-api.so', 'lib/*/libsherpa-onnx-cxx-api.so']
+    }
+}
+
+dependencies {
+    // 纯框架 API（§D-05：无 androidx 运行时依赖）
+    testImplementation 'junit:junit:4.13.2'
+    // v1.2 语音识别（§5.6）：sherpa-onnx 流式 Zipformer JNI（本地 AAR，无远程仓库依赖）
+    implementation files('libs/sherpa-onnx-1.13.7.aar')
+    implementation files('libs/onnxruntime-java.jar')  // ORT Java API（JNI so 在 src/main/jniLibs，C API 复用 sherpa aar 的 libonnxruntime.so 1.17.1）
+}
