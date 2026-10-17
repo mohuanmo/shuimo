@@ -57,7 +57,7 @@ import java.io.File
  * - 手写：画布抬笔即识别，候选与拼音同栏融合（§5.5）；
  * - 语音：本地 VAD 录音面板，模型资源包引导（§5.6）；
  * - 悬浮键盘：窗口内浮动容器（拖动/缩放/透明度/磁吸，§5.7 路线 A）；
- * - 无 INTERNET 权限；持久化单向（SQLite → 引擎装载；提交 → SQLite）。
+ * - INTERNET 权限仅用于用户主动添加的词库订阅下载；持久化单向（SQLite → 引擎装载；提交 → SQLite）。
  */
 class GkImeService : InputMethodService() {
 

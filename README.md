@@ -1,5 +1,9 @@
 # 水墨输入法 · GlassKey IME
 
+> **先说句实话**：这个输入法并不完美，绝大多数代码是 AI 写的，边用边修，遇到问题很正常。
+>
+> 安装之后，请自行到系统设置里手动开启「麦克风」和「显示在其他应用上层」权限，语音输入和悬浮键盘才会工作；不授权也不影响正常打字。项目在依赖上比较克制，运行时基本没有需要商业授权的库，再分发时不必太担心授权问题。至于本项目自己用什么许可证，我还没想好，仓库暂时不附许可证文件。
+
 水墨输入法是一款面向 Android 平台的输入法应用。它与其他主流输入法最根本的区别在于架构取向：**所有计算都在本地完成，键盘不做任何数据回传**。拼音、手写、语音三类输入方式，连同支撑它们的词典、识别模型、语料数据，全部随安装包离线分发——安装之后，无论是否联网，输入法的每一项功能都可以完整使用。
 
 > 下载：见 [Releases](https://github.com/mohuanmo/shuimo/releases) 页面的 APK（arm64-v8a / x86_64）。
@@ -36,31 +40,35 @@
 ## 工程结构
 
 ```
-app/
-  src/main/cpp/        C++17 核心引擎（词典、Beam 解码、用户模型）与 JNI 桥接
-  src/main/java/       Kotlin IME 层：输入法服务、键盘视图、候选栏、
-                       语音、手写、悬浮窗、剪贴板、设置与词库管理
-  src/main/assets/     离线词典（.gkdt）、ASR 模型、手写模型、语料
-  src/main/jniLibs/    onnxruntime JNI 库（arm64-v8a / x86_64）
-  src/test/            JVM 单元测试
-models/hwr/            手写模型与校验清单
-tools/dictbuilder/     词典构建脚本与种子词表
-tools/diag/            输入诊断工具
+app/                    Android 模块
+  src/main/cpp/         JNI 桥（gk_jni.cpp）+ CMake
+  src/main/java/        Kotlin IME 层：输入法服务、键盘视图、候选栏、
+                        语音、手写、悬浮窗、剪贴板、设置与词库管理
+  src/main/assets/      离线词典（.gkdt）、ASR 模型、手写模型、语料
+  src/main/jniLibs/     onnxruntime JNI 库（arm64-v8a / x86_64）
+  libs/                 sherpa-onnx AAR、onnxruntime Java API
+  src/test/             JVM 单元测试
+core/                   C++17 平台无关核心引擎
+  include/glasskey/     稳定 C ABI 头文件
+  src/                  词典（DAT）、音节切分、Beam 解码、拉丁引擎、用户模型
+  tests/                宿主单元测试
+models/hwr/             手写模型与校验清单
+tools/dictbuilder/      词典构建脚本与种子词表
+tools/diag/             输入诊断工具
 ```
 
 - 语言：Kotlin + C++17，`minSdk 26` / `targetSdk 34`
-- 构建：Gradle（Groovy DSL）+ CMake 3.22.1 + NDK 27，JDK 17
+- 构建：AGP 8.5.2、Gradle 8.9、Kotlin 2.0.20、NDK 27.0.12077973、CMake 3.22.1、JDK 17
 - UI：自绘 View，无 androidx 运行时依赖
+- 第三方组件：见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
 
-## 构建说明
+## 构建
 
-源码包不包含以下第三方二进制（体积与再分发许可原因，需自行准备）：
+源码包已包含 Gradle Wrapper、sherpa-onnx AAR 与 onnxruntime Java API，准备 JDK 17 与 Android SDK / NDK 后即可构建：
 
-- `app/libs/sherpa-onnx-1.13.7.aar`（sherpa-onnx 官方发布）
-- `app/libs/onnxruntime-java.jar`（onnxruntime Java API）
+```bash
+echo "sdk.dir=/path/to/android-sdk" > local.properties
+./gradlew :app:assembleRelease
+```
 
-以及常规的 Gradle Wrapper 与 Android SDK/NDK 环境。将它们放入对应位置后，即可用 `./gradlew :app:assembleRelease` 构建。
-
-## 许可
-
-本仓库暂未附带开源许可证文件；在许可证补充之前，请勿默认获得再分发授权。如需引用或二次分发，请先联系仓库作者。
+`release` 构建未内置签名配置，如需分发请自行配置 keystore。

@@ -1,22 +1,18 @@
-# Gradle
-.gradle/
 build/
-app/build/
+.gradle/
+.kotlin/
+.cxx/
 local.properties
-gradle/wrapper/gradle-wrapper.jar
-
-# IDE
-.idea/
 *.iml
-.DS_Store
+.idea/
+capture/
 
-# 构建产物（APK 通过 Releases 分发）
+# 构建产物与签名材料（APK 通过 Releases 分发）
 *.apk
 *.aab
 *.keystore
 *.jks
 
-# 日志与临时文件
+# 临时文件
 *.log
-*.tmp
-captures/
+.DS_Store
