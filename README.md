@@ -6,7 +6,7 @@
 
 水墨输入法是个 Android 输入法，做的其实是件挺笨的事：所有计算都放在手机本地，键盘不往外传东西。拼音、语音这些功能，连同词典和模型，全都塞在安装包里，装完断了网也照常用。手写那块还没弄好，下面单独说。
 
-APK 在 [Releases](https://github.com/mohuanmo/shuimo/releases) 页面，arm64-v8a 和 x86_64 都有。
+APK 在 [Releases](https://github.com/mohuanmo/shuimo/releases) 页面，arm64-v8a 架构。
 
 ## 隐私
 
@@ -45,7 +45,7 @@ app/                    Android 模块
                         语音、手写、悬浮窗、剪贴板、设置和词库管理
   src/main/assets/      离线词典（.gkdt）、ASR 模型、语料
                         （手写模型文件在，但加载不起来）
-  src/main/jniLibs/     onnxruntime JNI 库（arm64-v8a / x86_64）
+  src/main/jniLibs/     onnxruntime JNI 库（arm64-v8a）
   libs/                 sherpa-onnx AAR、onnxruntime Java API
   src/test/             JVM 单元测试
 core/                   C++17 引擎，和平台无关
